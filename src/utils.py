@@ -33,9 +33,13 @@ def evaluate_model(X_train,y_train,X_test,y_test,models):
         raise CustomException(e,sys)
 
 
-    # mae=mean_absolute_error(true,predicted),
-    # mse=mean_squared_error(true,predicted),
-    # rmse=np.sqrt(mse)
-    # r2_square=r2_score(true,predicted)
-    # return (mae,rmse,r2_square)    
-    
+def load_obj(file_path):
+    try:
+        dir_path=os.path.dirname(file_path)
+        os.makedirs(dir_path,exist_ok=True)
+        with open(file_path,"rb") as file_obj:
+            return pickle.load(file_obj)
+    except Exception as e:
+        logging.info("Exception occured in load_object function utils")
+        raise CustomException(e,sys)
+
